@@ -16,7 +16,7 @@ public class BankAccount {
         balance -= amount;
     }
 
-    public void addExpenditure(Expendituree expenditure) {
+    public void addExpendituree(Expendituree expenditure) {
         expenditureCodes.add(expenditure);
         debit(expenditure.amount);
     }
