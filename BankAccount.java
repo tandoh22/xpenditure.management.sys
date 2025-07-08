@@ -3,7 +3,7 @@ public class BankAccount {
     public String accountId;
     public String bankName;
     public double balance;
-    public LinkedList<Xpenditure> expenditureCodes;
+    public LinkedList<Expenditure> expenditureCodes;
 
     public BankAccount(String accountId, String bankName, double balance) {
         this.accountId = accountId;
@@ -16,19 +16,15 @@ public class BankAccount {
         balance -= amount;
     }
 
-    public void addExpenditure(Xpenditure expenditure) {
+    public void addExpenditure(Expenditure expenditure) {
         expenditureCodes.add(expenditure);
         debit(expenditure.amount);
     }
 
     public void display() {
         System.out.println("Account ID: " + accountId);
-        System.out.println("Bank Name: " + bankName);
+        System.out.println("Bank: " + bankName);
         System.out.println("Balance: " + balance);
-        System.out.println("Expenditures:");
-        for (Xpenditure expenditure : expenditureCodes) {
-            expenditure.display();
-        }
     }
 
 }
