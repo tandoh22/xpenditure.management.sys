@@ -12,4 +12,23 @@ public class BankAccount {
         this.expenditureCodes = new ArrayList<>();
     }
 
+    public void debit(double amount) {
+        balance -= amount;
+    }
+
+    public void addExpenditure(Xpenditure expenditure) {
+        expenditureCodes.add(expenditure);
+        debit(expenditure.amount);
+    }
+
+    public void display() {
+        System.out.println("Account ID: " + accountId);
+        System.out.println("Bank Name: " + bankName);
+        System.out.println("Balance: " + balance);
+        System.out.println("Expenditures:");
+        for (Xpenditure expenditure : expenditureCodes) {
+            expenditure.display();
+        }
+    }
+
 }
