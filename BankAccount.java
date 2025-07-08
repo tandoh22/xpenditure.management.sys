@@ -1,9 +1,9 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 public class BankAccount {
     public String accountId;
     public String bankName;
     public double balance;
-    public ArrayList<String> expenditureCodes;
+    public LinkedList<Xpenditure> expenditureCodes;
 
     public BankAccount(String accountId, String bankName, double balance) {
         this.accountId = accountId;

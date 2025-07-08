@@ -5,7 +5,6 @@ public class Xpenditure {
     public String phase;
     public String category;
     public String bankAccountId;
-    public String receipt;
 
     public Xpenditure(String code, double amount, String date, String phase, String category, String bankAccountId, String receipt) {
         this.code = code;
@@ -14,6 +13,14 @@ public class Xpenditure {
         this.phase = phase;
         this.category = category;
         this.bankAccountId = bankAccountId;
-        this.receipt = null;
+    }
+
+    public void display() {
+        System.out.println("Code: " + code);
+        System.out.println("Amount: " + amount);
+        System.out.println("Date: " + date);
+        System.out.println("Phase: " + phase);
+        System.out.println("Category: " + category);
+        System.out.println("Bank Account ID: " + bankAccountId);
     }
 }
