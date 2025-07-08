@@ -3,20 +3,20 @@ public class BankAccount {
     public String accountId;
     public String bankName;
     public double balance;
-    public LinkedList<Expenditure> expenditureCodes;
+    public LinkedList<Expendituree> expenditureCodes;
 
     public BankAccount(String accountId, String bankName, double balance) {
         this.accountId = accountId;
         this.bankName = bankName;
         this.balance = balance;
-        this.expenditureCodes = new ArrayList<>();
+        this.expenditureCodes = new LinkedList<>();
     }
 
     public void debit(double amount) {
         balance -= amount;
     }
 
-    public void addExpenditure(Expenditure expenditure) {
+    public void addExpenditure(Expendituree expenditure) {
         expenditureCodes.add(expenditure);
         debit(expenditure.amount);
     }
