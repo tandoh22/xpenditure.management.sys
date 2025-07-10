@@ -2,8 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Receipt {
-    public Queue<Strings> receiptQueue = new LinkedList<>();
-    public void uploadReceipt(String receipt) {
-        receiptQueue.add(receipt);
+    public Queue<String> receipt = new LinkedList<>();
+    public void uploadReceipt(String receiptItem) {
+        receipt.add(receiptItem);
     }
 }
