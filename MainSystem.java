@@ -70,7 +70,7 @@ public class MainSystem {
 
     public static void saveCategories() {
         try (PrintWriter writer = new PrintWriter(CAT_FILE)) {
-            for (String cat : categoryManager.categories()) {
+            for (String cat : categoryManager.getCategories()) {
                 writer.println(cat);
             }
         } catch (IOException e) {
