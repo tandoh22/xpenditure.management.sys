@@ -67,4 +67,14 @@ public class MainSystem {
             System.out.println("Error saving accounts: " + e.getMessage());
         }
     }
+
+    public static void saveCategories() {
+        try (PrintWriter writer = new PrintWriter(CAT_FILE)) {
+            for (String cat : categoryManager.categories()) {
+                writer.println(cat);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving categories: " + e.getMessage());
+        }
+    }
 }
