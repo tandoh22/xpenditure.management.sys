@@ -136,10 +136,22 @@ public class MainSystem {
         }
     }
 
+    public static void loadReceipts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(REC_FILE))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                receiptQueue.uploadReceipt(line);
+            }
+        } catch (IOException e) {
+            System.out.println("No receipts to load or file not found");
+        }
+    }
+
     public static void saveAll() {
         saveExpenditures();
         saveAccounts();
         saveCategories();
+        saveReceipts();
         System.out.println("All data saved successfully.");
     }
 
@@ -147,6 +159,7 @@ public class MainSystem {
         loadExpenditures();
         loadAccounts();
         loadCategories();
+        loadReceipts();
         System.out.println("All data loaded successfully.");
     }
 }
