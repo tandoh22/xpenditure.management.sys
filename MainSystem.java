@@ -97,4 +97,22 @@ public class MainSystem {
             System.out.println("No expenditures to load or file not found");
         }
     }
+
+    public static void loadAccounts() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(BANK_FILE))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    BankAccount account = new BankAccount(parts[0], parts[1], Double.parseDouble(parts[2]));
+                    bankAccounts.put(parts[0], account);
+                    minHeap.insert(account);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No accounts to load or file not found");
+        }
+    }
+
+    
 }
