@@ -162,4 +162,131 @@ public class MainSystem {
         loadReceipts();
         System.out.println("All data loaded successfully.");
     }
+
+    public static void  menu() {
+        System.out.println("\n----- Nkwa Real Estate Expenditure Management System -----");
+        System.out.println("1. Add Expenditure");
+        System.out.println("2. Add Category");
+        System.out.println("3. Add Bank Account");
+        System.out.println("4. View All Expenditures");
+        System.out.println("5. View All Categories");
+        System.out.println("6. View All Bank Accounts");
+        System.out.println("7. Sort Expenditures by Category");
+        System.out.println("8. Sort Expenditures by Date");
+        System.out.println("9. Searh by Category");
+        System.out.println("10. Search by Bank Account ID");
+        System.out.println("11. Search by Cost Range");
+        System.out.println("12. Search by Time Range");
+        System.out.println("13. Save and Exit");
+        System.out.println("Enter your choice: ");
+        String choice = scanner.nextLine();
+        switch (choice) {
+            case "1": addExpendituree(); break;
+            case "2": {
+                System.out.print("Enter category name: ");
+                String category = scanner.nextLine();
+                if (categoryManager.addCategory(category)) {
+                    System.out.println("Category added successfully.");
+                } else {
+                    System.out.println("Category already exists.");
+                }
+            } break;
+            case "3": {
+                System.out.print("Enter bank account ID: ");
+                String accountId = scanner.nextLine();
+                System.out.print("Enter bank name: ");
+                String bankName = scanner.nextLine();
+                System.out.print("Enter initial balance: ");
+                double balance = Double.parseDouble(scanner.nextLine());
+                BankAccount account = new BankAccount(accountId, bankName, balance);
+                bankAccounts.put(accountId, account);
+                minHeap.insert(account);
+                System.out.println("Bank account added successfully.");
+            } break;
+            case "4": 
+                for (Expendituree expenditure : expenditureList) {
+                    System.out.println(expenditure);
+                }
+                break;
+            case "5": categoryManager.displayAll(); break;
+            case "6": 
+                for (BankAccount account : bankAccounts.values()) {
+                    account.display();
+                }
+                break;
+            case "7": 
+                expenditureList.sort(Comparator.comparing(e -> e.category));
+                System.out.println("Expenditures sorted by category:");
+                for (Expendituree expenditure : expenditureList) {
+                    System.out.println(expenditure);
+                }
+                break;
+            case "8": 
+                expenditureList.sort(Comparator.comparing(e -> e.date));
+                System.out.println("Expenditures sorted by date:");
+                for (Expendituree expenditure : expenditureList) {
+                    System.out.println(expenditure);
+                }
+                break;
+            case "9": 
+                System.out.print("Enter category to search: ");
+                String searchCategory = scanner.nextLine();
+                boolean found = false;
+                for (Expendituree expenditure : expenditureList) {
+                    if (expenditure.category.equals(searchCategory)) {
+                        System.out.println(expenditure);
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println("No expenditures found for category: " + searchCategory);
+                }
+                break;
+            case "10": 
+                System.out.print("Enter bank account ID to search: ");
+                String searchAccountId = scanner.nextLine();
+                BankAccount account = bankAccounts.get(searchAccountId);
+                if (account != null) {
+                    account.display();
+                } else {
+                    System.out.println("No bank account found with ID: " + searchAccountId);
+                }
+                break;
+            case "11": 
+                System.out.print("Enter minimum cost: ");
+                double minCost = Double.parseDouble(scanner.nextLine());
+                System.out.print("Enter maximum cost: ");
+                double maxCost = Double.parseDouble(scanner.nextLine());
+                found = false;
+                for (Expendituree expenditure : expenditureList) {
+                    if (expenditure.amount >= minCost && expenditure.amount <= maxCost) {
+                        System.out.println(expenditure);
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println("No expenditures found in the specified cost range.");
+                }
+                break;
+            case "12": 
+                System.out.print("Enter start date (YYYY-MM-DD): ");
+                String startDate = scanner.nextLine();
+                System.out.print("Enter end date (YYYY-MM-DD): ");
+                String endDate = scanner.nextLine();
+                found = false;
+                for (Expendituree expenditure : expenditureList) {
+                    if (expenditure.date.compareTo(startDate) >= 0 && expenditure.date.compareTo(endDate) <= 0) {
+                        System.out.println(expenditure);
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println("No expenditures found in the specified date range.");
+                }
+                break;
+            case "13": saveAll(); System.out.println("Exiting the system. Goodbye!"); return;
+            default: System.out.println("Invalid choice. Please try again.");
+
+        }
+    }
 }
