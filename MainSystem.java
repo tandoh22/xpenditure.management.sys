@@ -168,17 +168,18 @@ public class MainSystem {
 
         System.out.println("1. Add Expenditure");
         System.out.println("2. Add Category");
-        System.out.println("3. Add Bank Account");
-        System.out.println("4. View All Expenditures");
-        System.out.println("5. View All Categories");
-        System.out.println("6. View All Bank Accounts");
-        System.out.println("7. Sort Expenditures by Category");
-        System.out.println("8. Sort Expenditures by Date");
-        System.out.println("9. Searh by Category");
-        System.out.println("10. Search by Bank Account ID");
-        System.out.println("11. Search by Cost Range");
-        System.out.println("12. Search by Time Range");
-        System.out.println("13. Save and Exit");
+        System.out.println("3. Remove Category");
+        System.out.println("4. Add Bank Account");
+        System.out.println("5. View All Expenditures");
+        System.out.println("6. View All Categories");
+        System.out.println("7. View All Bank Accounts");
+        System.out.println("8. Sort Expenditures by Category");
+        System.out.println("9. Sort Expenditures by Date");
+        System.out.println("10. Searh by Category");
+        System.out.println("11. Search by Bank Account ID");
+        System.out.println("12. Search by Cost Range");
+        System.out.println("13. Search by Time Range");
+        System.out.println("14. Save and Exit");
         System.out.println("---------------------------------------------------------");
         System.out.println("Enter your choice: ");
         String choice = scanner.nextLine();
@@ -194,6 +195,15 @@ public class MainSystem {
                 }
             } break;
             case "3": {
+                System.out.print("Enter category name to remove: ");
+                String toRemove = scanner.nextLine();
+                if (categoryManager.removeCategory(toRemove)) {
+                    System.out.println("Category removed successfully.");
+                } else {
+                    System.out.println("Category does not exist.");
+                }
+            } break;
+            case "4": {
                 System.out.print("Enter bank account ID: ");
                 String accountId = scanner.nextLine();
                 System.out.print("Enter bank name: ");
@@ -205,32 +215,32 @@ public class MainSystem {
                 minHeap.insert(account);
                 System.out.println("Bank account added successfully.");
             } break;
-            case "4": 
+            case "5": 
                 for (Expendituree expenditure : expenditureList) {
                     expenditure.display();
                 }
                 break;
-            case "5": categoryManager.displayAll(); break;
-            case "6": 
+            case "6": categoryManager.displayAll(); break;
+            case "7": 
                 for (BankAccount account : bankAccounts.values()) {
                     account.display();
                 }
                 break;
-            case "7": 
+            case "8": 
                 expenditureList.sort(Comparator.comparing(e -> e.category));
                 System.out.println("Expenditures sorted by category:");
                 for (Expendituree expenditure : expenditureList) {
                     expenditure.display();
                 }
                 break;
-            case "8": 
+            case "9": 
                 expenditureList.sort(Comparator.comparing(e -> e.date));
                 System.out.println("Expenditures sorted by date:");
                 for (Expendituree expenditure : expenditureList) {
                      expenditure.display();
                 }
                 break;
-            case "9": 
+            case "10": 
                 System.out.print("Enter category to search: ");
                 String searchCategory = scanner.nextLine();
                 boolean found = false;
@@ -244,7 +254,7 @@ public class MainSystem {
                     System.out.println("No expenditures found for category: " + searchCategory);
                 }
                 break;
-            case "10": 
+            case "11": 
                 System.out.print("Enter bank account ID to search: ");
                 String searchAccountId = scanner.nextLine();
                 BankAccount account = bankAccounts.get(searchAccountId);
@@ -254,7 +264,7 @@ public class MainSystem {
                     System.out.println("No bank account found with ID: " + searchAccountId);
                 }
                 break;
-            case "11": 
+            case "12": 
                 System.out.print("Enter minimum cost: ");
                 double minCost = Double.parseDouble(scanner.nextLine());
                 System.out.print("Enter maximum cost: ");
@@ -270,7 +280,7 @@ public class MainSystem {
                     System.out.println("No expenditures found in the specified cost range.");
                 }
                 break;
-            case "12": 
+            case "13": 
                 System.out.print("Enter start date (YYYY-MM-DD): ");
                 String startDate = scanner.nextLine();
                 System.out.print("Enter end date (YYYY-MM-DD): ");
@@ -286,7 +296,7 @@ public class MainSystem {
                     System.out.println("No expenditures found in the specified date range.");
                 }
                 break;
-            case "13": saveAll(); System.out.println("Exiting the system. Goodbye!"); return;
+            case "14": saveAll(); System.out.println("Exiting the system. Goodbye!"); return;
             default: System.out.println("Invalid choice. Please try again.");
 
         }

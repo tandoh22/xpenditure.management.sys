@@ -22,4 +22,8 @@ public class Category {
             System.out.println(cat);
         }
     }
+    
+    public boolean removeCategory(String category) {
+        return categories.remove(category);
+    }
 }

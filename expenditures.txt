@@ -1,3 +1,3 @@
 c24,200.0,2025-01-01,Phase 2,Construction,GCB2001
-EXP2021,100.0,2025-11-11,phase 3,Construction,GCB2001
 Fin201,150.0,2025-1-31,miscellenous,Finance,GCB2001
+EXP2021,100.0,2025-11-11,phase 3,Construction,GCB2001
