@@ -14,6 +14,7 @@ public class MainSystem {
     static final String EXP_FILE = "expenditures.txt";
     static final String BANK_FILE = "accounts.txt";
     static final String CAT_FILE = "categories.txt";
+    static final String REC_FILE = "receipts.txt";
 
     public static void addExpendituree() {
         System.out.print("Enter code: ");
@@ -75,6 +76,16 @@ public class MainSystem {
             }
         } catch (IOException e) {
             System.out.println("Error saving categories: " + e.getMessage());
+        }
+    }
+
+    public static void saveReceipts() {
+        try (PrintWriter writer = new PrintWriter(REC_FILE)) {
+            for (String receipt : receiptQueue.receipt) {
+                writer.println(receipt);
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving receipts: " + e.getMessage());
         }
     }
 
