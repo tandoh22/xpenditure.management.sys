@@ -77,4 +77,24 @@ public class MainSystem {
             System.out.println("Error saving categories: " + e.getMessage());
         }
     }
+
+    public static void loadExpenditures() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(EXP_FILE))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 6) {
+                    Expendituree expenditure = new Expendituree(parts[0], Double.parseDouble(parts[1]),
+                            parts[2], parts[3], parts[4], parts[5]);
+                    expenditureList.add(expenditure);
+                    expenditureMap.put(expenditure.code, expenditure);
+                    if (bankAccounts.containsKey(expenditure.bankAccountId)) {
+                        bankAccounts.get(expenditure.bankAccountId).addExpendituree(expenditure);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No expenditures to load or file not found");
+        }
+    }
 }
