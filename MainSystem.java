@@ -207,7 +207,7 @@ public class MainSystem {
             } break;
             case "4": 
                 for (Expendituree expenditure : expenditureList) {
-                    System.out.println(expenditure);
+                    expenditure.display();
                 }
                 break;
             case "5": categoryManager.displayAll(); break;
@@ -220,14 +220,14 @@ public class MainSystem {
                 expenditureList.sort(Comparator.comparing(e -> e.category));
                 System.out.println("Expenditures sorted by category:");
                 for (Expendituree expenditure : expenditureList) {
-                    System.out.println(expenditure);
+                    expenditure.display();
                 }
                 break;
             case "8": 
                 expenditureList.sort(Comparator.comparing(e -> e.date));
                 System.out.println("Expenditures sorted by date:");
                 for (Expendituree expenditure : expenditureList) {
-                    System.out.println(expenditure);
+                     expenditure.display();
                 }
                 break;
             case "9": 
