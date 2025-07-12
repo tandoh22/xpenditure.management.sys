@@ -289,4 +289,11 @@ public class MainSystem {
 
         }
     }
+
+    public static void main(String[] args) {
+        loadAll();
+        while (true) {
+            menu();
+        }
+    }
 }
