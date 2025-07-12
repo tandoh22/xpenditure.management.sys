@@ -114,5 +114,28 @@ public class MainSystem {
         }
     }
 
-    
+    public static void loadCategories() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(CAT_FILE))) {
+            String line;
+            while((line = reader.readLine()) != null) {
+                categoryManager.addCategory(line);
+            }
+        } catch (IOException e) {
+            System.out.println("No categories to load or file not found");
+        }
+    }
+
+    public static void saveAll() {
+        saveExpenditures();
+        saveAccounts();
+        saveCategories();
+        System.out.println("All data saved successfully.");
+    }
+
+    public static void loadAll() {
+        loadExpenditures();
+        loadAccounts();
+        loadCategories();
+        System.out.println("All data loaded successfully.");
+    }
 }
