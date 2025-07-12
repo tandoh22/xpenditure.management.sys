@@ -81,9 +81,9 @@ public class MainSystem {
 
     public static void saveReceipts() {
         try (PrintWriter writer = new PrintWriter(REC_FILE)) {
-            for (String receipt : receiptQueue.receipt) {
+           for (String receipt : receiptQueue.getReceipt()) {
                 writer.println(receipt);
-            }
+        }
         } catch (IOException e) {
             System.out.println("Error saving receipts: " + e.getMessage());
         }
@@ -164,7 +164,8 @@ public class MainSystem {
     }
 
     public static void  menu() {
-        System.out.println("\n----- Nkwa Real Estate Expenditure Management System -----");
+        System.out.println("\n====== Nkwa Real Estate Expenditure Management System ======");
+
         System.out.println("1. Add Expenditure");
         System.out.println("2. Add Category");
         System.out.println("3. Add Bank Account");
@@ -178,6 +179,7 @@ public class MainSystem {
         System.out.println("11. Search by Cost Range");
         System.out.println("12. Search by Time Range");
         System.out.println("13. Save and Exit");
+        System.out.println("---------------------------------------------------------");
         System.out.println("Enter your choice: ");
         String choice = scanner.nextLine();
         switch (choice) {
