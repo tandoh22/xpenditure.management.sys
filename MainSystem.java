@@ -39,13 +39,6 @@ public class MainSystem {
         expenditureList.add(expenditure);
         bankAccounts.get(bankAccountId).addExpendituree(expenditure);
         minHeap.insert(bankAccounts.get(bankAccountId));
-        String receipt = "Receipt for expenditure" + code + ": \n"
-                + "Amount: " + String.format("%.2f", amount) + "\n"
-                + "Date: " + date + "\n"
-                + "Phase: " + phase + "\n"
-                + "Category: " + category + "\n"
-                + "Bank Account ID: " + bankAccountId;
-        receiptQueue.receiptQueue.add(receipt);
         System.out.println("Expenditure added successfully.\n");
         
         if (bankAccounts.containsKey(bankAccountId)) {
@@ -57,6 +50,14 @@ public class MainSystem {
         if (!categoryManager.exists(category)) {
             System.out.println("Category does not exist. Add category first.");
         }
+
+        String receipt = "Receipt for expenditure" + code + ": \n"
+                + "Amount: " + String.format("%.2f", amount) + "\n"
+                + "Date: " + date + "\n"
+                + "Phase: " + phase + "\n"
+                + "Category: " + category + "\n"
+                + "Bank Account ID: " + bankAccountId;
+        receiptQueue.receiptQueue.add(receipt);
     }
 
     public static void saveExpenditures() {
@@ -64,7 +65,6 @@ public class MainSystem {
             for (Expendituree expenditure : expenditureList) {
                 writer.println(expenditure.code + "," + expenditure.amount + "," + expenditure.date + "," +
                         expenditure.phase + "," + expenditure.category + "," + expenditure.bankAccountId);
-                writer.println("------------------------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("Error saving expenditures: " + e.getMessage());
@@ -75,7 +75,6 @@ public class MainSystem {
         try (PrintWriter writer = new PrintWriter(BANK_FILE)) {
             for (BankAccount account : bankAccounts.values()) {
                 writer.println(account.accountId + "," + account.bankName + "," + account.balance );
-                writer.println("---------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("Error saving accounts: " + e.getMessage());
@@ -96,7 +95,6 @@ public class MainSystem {
         try (PrintWriter writer = new PrintWriter(REC_FILE)) {
         for (String receipt : receiptQueue.getReceipt()) {
             writer.println(receipt);
-            writer.println("--------------------------------------");
         }
         } catch (IOException e) {
             System.out.println("Error saving receipts: " + e.getMessage());
@@ -266,6 +264,7 @@ public class MainSystem {
                     if (expenditure.category.equals(searchCategory)) {
                         expenditure.display();
                         found = true;
+                        System.out.println("------------------------------------------");
                     }
                 }
                 if (!found) {
