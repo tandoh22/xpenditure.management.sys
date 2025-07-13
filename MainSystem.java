@@ -30,13 +30,22 @@ public class MainSystem {
         System.out.print("Enter bank account ID: ");
         String bankAccountId = scanner.nextLine();
 
+        if (bankAccounts.get(bankAccountId).balance < amount) {
+            System.out.println(" Failed: Insufficient balance in the selected bank account.");
+            return;
+        }
         Expendituree expenditure = new Expendituree(code, amount, date, phase, category, bankAccountId);
         expenditureMap.put(code, expenditure);
         expenditureList.add(expenditure);
         bankAccounts.get(bankAccountId).addExpendituree(expenditure);
         minHeap.insert(bankAccounts.get(bankAccountId));
-
-        receiptQueue.receiptQueue.add(code + "_receipt.pdf");
+        String receipt = "Receipt for expenditure" + code + ": \n"
+                + "Amount: " + String.format("%.2f", amount) + "\n"
+                + "Date: " + date + "\n"
+                + "Phase: " + phase + "\n"
+                + "Category: " + category + "\n"
+                + "Bank Account ID: " + bankAccountId;
+        receiptQueue.receiptQueue.add(receipt);
         System.out.println("Expenditure added successfully.\n");
         
         if (bankAccounts.containsKey(bankAccountId)) {
@@ -55,6 +64,7 @@ public class MainSystem {
             for (Expendituree expenditure : expenditureList) {
                 writer.println(expenditure.code + "," + expenditure.amount + "," + expenditure.date + "," +
                         expenditure.phase + "," + expenditure.category + "," + expenditure.bankAccountId);
+                writer.println("--------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("Error saving expenditures: " + e.getMessage());
@@ -64,7 +74,8 @@ public class MainSystem {
     public static void saveAccounts() {
         try (PrintWriter writer = new PrintWriter(BANK_FILE)) {
             for (BankAccount account : bankAccounts.values()) {
-                writer.println(account.accountId + "," + account.bankName + "," + account.balance);
+                writer.println(account.accountId + "," + account.bankName + "," + account.balance );
+                writer.println("---------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("Error saving accounts: " + e.getMessage());
@@ -85,6 +96,7 @@ public class MainSystem {
         try (PrintWriter writer = new PrintWriter(REC_FILE)) {
         for (String receipt : receiptQueue.getReceipt()) {
             writer.println(receipt);
+            writer.println("--------------------------------------");
         }
         } catch (IOException e) {
             System.out.println("Error saving receipts: " + e.getMessage());
