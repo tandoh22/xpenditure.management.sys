@@ -35,6 +35,8 @@ public class MainSystem {
         expenditureList.add(expenditure);
         bankAccounts.get(bankAccountId).addExpendituree(expenditure);
         minHeap.insert(bankAccounts.get(bankAccountId));
+
+        receiptQueue.receiptQueue.add(code + "_receipt.pdf");
         System.out.println("Expenditure added successfully.\n");
         
         if (bankAccounts.containsKey(bankAccountId)) {
@@ -140,7 +142,7 @@ public class MainSystem {
         try (BufferedReader reader = new BufferedReader(new FileReader(REC_FILE))) {
             String line;
             while((line = reader.readLine()) != null) {
-                receiptQueue.uploadReceipt(line);
+                receiptQueue.receiptQueue.add(line);
             }
         } catch (IOException e) {
             System.out.println("No receipts to load or file not found");

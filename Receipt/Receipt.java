@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Queue;
 
 public class Receipt {
-    private Queue<String> receipt = new LinkedList<>();
+    public Queue<String> receiptQueue = new LinkedList<>();
     public List<String> getReceipt() {
-    return new ArrayList<>(receipt);
+    return new ArrayList<>(receiptQueue);
     }
     public void uploadReceipt(String receiptItem) {
-        receipt.add(receiptItem);
+        receiptQueue.add(receiptItem);
     }
 }
