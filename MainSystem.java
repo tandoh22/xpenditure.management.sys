@@ -64,7 +64,7 @@ public class MainSystem {
             for (Expendituree expenditure : expenditureList) {
                 writer.println(expenditure.code + "," + expenditure.amount + "," + expenditure.date + "," +
                         expenditure.phase + "," + expenditure.category + "," + expenditure.bankAccountId);
-                writer.println("--------------------------------------");
+                writer.println("------------------------------------------------------");
             }
         } catch (IOException e) {
             System.out.println("Error saving expenditures: " + e.getMessage());
@@ -232,12 +232,14 @@ public class MainSystem {
             case "5": 
                 for (Expendituree expenditure : expenditureList) {
                     expenditure.display();
+                    System.out.println("------------------------------------------");
                 }
                 break;
             case "6": categoryManager.displayAll(); break;
             case "7": 
                 for (BankAccount account : bankAccounts.values()) {
                     account.display();
+                    System.out.println("------------------------------------------");
                 }
                 break;
             case "8": 
@@ -245,6 +247,7 @@ public class MainSystem {
                 System.out.println("Expenditures sorted by category:");
                 for (Expendituree expenditure : expenditureList) {
                     expenditure.display();
+                    System.out.println("------------------------------------------");
                 }
                 break;
             case "9": 
@@ -252,6 +255,7 @@ public class MainSystem {
                 System.out.println("Expenditures sorted by date:");
                 for (Expendituree expenditure : expenditureList) {
                      expenditure.display();
+                     System.out.println("------------------------------------------");
                 }
                 break;
             case "10": 
@@ -260,7 +264,7 @@ public class MainSystem {
                 boolean found = false;
                 for (Expendituree expenditure : expenditureList) {
                     if (expenditure.category.equals(searchCategory)) {
-                        System.out.println(expenditure);
+                        expenditure.display();
                         found = true;
                     }
                 }
@@ -286,13 +290,15 @@ public class MainSystem {
                 found = false;
                 for (Expendituree expenditure : expenditureList) {
                     if (expenditure.amount >= minCost && expenditure.amount <= maxCost) {
-                        System.out.println(expenditure);
+                        expenditure.display();
                         found = true;
+                        System.out.println("------------------------------------------");
                     }
                 }
                 if (!found) {
                     System.out.println("No expenditures found in the specified cost range.");
                 }
+
                 break;
             case "13": 
                 System.out.print("Enter start date (YYYY-MM-DD): ");
@@ -302,15 +308,17 @@ public class MainSystem {
                 found = false;
                 for (Expendituree expenditure : expenditureList) {
                     if (expenditure.date.compareTo(startDate) >= 0 && expenditure.date.compareTo(endDate) <= 0) {
-                        System.out.println(expenditure);
+                        expenditure.display();
                         found = true;
+                        System.out.println("------------------------------------------");
                     }
                 }
                 if (!found) {
                     System.out.println("No expenditures found in the specified date range.");
                 }
                 break;
-            case "14": saveAll(); System.out.println("Exiting the system. Goodbye!"); return;
+            case "14": saveAll(); System.out.println("Exiting the system. Goodbye!"); 
+                System.exit(0); return;
             default: System.out.println("Invalid choice. Please try again.");
 
         }
