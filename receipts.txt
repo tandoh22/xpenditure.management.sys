@@ -12,3 +12,9 @@ Date: 2026-5-8
 Phase: sales
 Category: Printing
 Bank Account ID: Cal2002
+Receipt for expenditure 2002: 
+Amount: 100.00
+Date: 2025-8-8
+Phase: CONSTRUCTION
+Category: Cement
+Bank Account ID: Cal2002
