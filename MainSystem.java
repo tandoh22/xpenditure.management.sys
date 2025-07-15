@@ -10,7 +10,7 @@ public class MainSystem {
     static Receipt receiptQueue = new Receipt();
     static Review reviewStack = new Review();
     static MinHeap minHeap = new MinHeap(20);
-    static final double MIN_BALANCE_THRESHOLD = 200.00;
+    static final double MIN_BALANCE_THRESHOLD = 200.0;
 
     static final String EXP_FILE = "expenditures.txt";
     static final String BANK_FILE = "accounts.txt";
