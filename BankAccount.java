@@ -12,19 +12,15 @@ public class BankAccount {
         this.expenditureCodes = new LinkedList<>();
     }
 
-    public void debit(double amount) {
-        balance -= amount;
-    }
-
     public void addExpendituree(Expendituree expenditure) {
         expenditureCodes.add(expenditure);
-        debit(expenditure.amount);
+        balance -= expenditure.amount;
     }
 
     public void display() {
         System.out.println("Account ID: " + accountId);
         System.out.println("Bank: " + bankName);
-        System.out.println("Balance: " + String.format("%.2f", balance));
+        System.out.println("Balance: " + balance);
     }
    
 }

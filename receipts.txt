@@ -18,3 +18,9 @@ Date: 2025-8-8
 Phase: CONSTRUCTION
 Category: Cement
 Bank Account ID: Cal2002
+Receipt for expenditure AS2000: 
+Amount: 200.00
+Date: 2025-1-6
+Phase: CONSTRUCTION
+Category: Blocks
+Bank Account ID: Cal2002
