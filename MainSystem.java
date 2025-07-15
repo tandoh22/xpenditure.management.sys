@@ -40,7 +40,6 @@ public class MainSystem {
         expenditureList.add(expenditure);
         bankAccounts.get(bankAccountId).addExpendituree(expenditure);
         minHeap.insert(bankAccounts.get(bankAccountId));
-        notifyLowBalanceAccounts();
         System.out.println("Expenditure added successfully.\n");
         
         if (bankAccounts.containsKey(bankAccountId)) {
@@ -53,7 +52,7 @@ public class MainSystem {
             System.out.println("Category does not exist. Add category first.");
         }
 
-        String receipt = "Receipt for expenditure" + code + ": \n"
+        String receipt = "Receipt for expenditure " + code + ": \n"
                 + "Amount: " + String.format("%.2f", amount) + "\n"
                 + "Date: " + date + "\n"
                 + "Phase: " + phase + "\n"
@@ -242,6 +241,7 @@ public class MainSystem {
                 bankAccounts.put(accountId, account);
                 minHeap.insert(account);
                 System.out.println("Bank account added successfully.");
+                notifyLowBalanceAccounts();
             } break;
             case "5": 
                 for (Expendituree expenditure : expenditureList) {
