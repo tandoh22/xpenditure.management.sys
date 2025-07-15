@@ -10,6 +10,7 @@ public class MainSystem {
     static Receipt receiptQueue = new Receipt();
     static Review reviewStack = new Review();
     static MinHeap minHeap = new MinHeap(20);
+    static final double MIN_BALANCE_THRESHOLD = 200.00;
 
     static final String EXP_FILE = "expenditures.txt";
     static final String BANK_FILE = "accounts.txt";
@@ -39,6 +40,7 @@ public class MainSystem {
         expenditureList.add(expenditure);
         bankAccounts.get(bankAccountId).addExpendituree(expenditure);
         minHeap.insert(bankAccounts.get(bankAccountId));
+        notifyLowBalanceAccounts();
         System.out.println("Expenditure added successfully.\n");
         
         if (bankAccounts.containsKey(bankAccountId)) {
@@ -165,6 +167,20 @@ public class MainSystem {
         saveCategories();
         saveReceipts();
         System.out.println("All data saved successfully.");
+    }
+
+    public static void notifyLowBalanceAccounts() {
+        System.out.println("\n Accounts Below Minimum Balance (" + MIN_BALANCE_THRESHOLD + "):");
+        boolean anyLow = false;
+        for (BankAccount account : bankAccounts.values()) {
+            if (account.balance < MIN_BALANCE_THRESHOLD) {
+                account.display();
+                anyLow = true;
+            }
+        }
+        if (!anyLow) {
+            System.out.println("No accounts below minimum balance.");
+        }
     }
 
     public static void loadAll() {
