@@ -24,3 +24,9 @@ Date: 2025-1-6
 Phase: CONSTRUCTION
 Category: Blocks
 Bank Account ID: Cal2002
+Receipt for expenditure aza1001: 
+Amount: 100.00
+Date: 2025-5-8
+Phase: cons
+Category: Cement
+Bank Account ID: GCB2001

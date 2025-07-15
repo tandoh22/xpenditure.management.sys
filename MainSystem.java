@@ -96,6 +96,7 @@ public class MainSystem {
         try (PrintWriter writer = new PrintWriter(REC_FILE)) {
         for (String receipt : receiptQueue.getReceipt()) {
             writer.println(receipt);
+            System.out.println("--------------------------------------------");
         }
         } catch (IOException e) {
             System.out.println("Error saving receipts: " + e.getMessage());
