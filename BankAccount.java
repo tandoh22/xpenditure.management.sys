@@ -20,7 +20,7 @@ public class BankAccount {
     public void display() {
         System.out.println("Account ID: " + accountId);
         System.out.println("Bank: " + bankName);
-        System.out.println("Balance: " + balance);
+        System.out.println("Balance: " + String.format("%.2f", balance));
     }
    
 }

@@ -42,12 +42,10 @@ public class MainSystem {
         minHeap.insert(bankAccounts.get(bankAccountId));
         System.out.println("Expenditure added successfully.\n");
         
-        if (bankAccounts.containsKey(bankAccountId)) {
-            bankAccounts.get(bankAccountId).addExpendituree(expenditure);
-        } else {
+        if (!bankAccounts.containsKey(bankAccountId)) {
             System.out.println("Bank account not found.");
-        }
-
+        } 
+            
         if (!categoryManager.exists(category)) {
             System.out.println("Category does not exist. Add category first.");
         }
@@ -75,7 +73,7 @@ public class MainSystem {
     public static void saveAccounts() {
         try (PrintWriter writer = new PrintWriter(BANK_FILE)) {
             for (BankAccount account : bankAccounts.values()) {
-                writer.println(account.accountId + "," + account.bankName + "," + account.balance );
+                writer.println(account.accountId + "," + account.bankName + "," + String.format("%.2f", account.balance ));
             }
         } catch (IOException e) {
             System.out.println("Error saving accounts: " + e.getMessage());
@@ -96,7 +94,6 @@ public class MainSystem {
         try (PrintWriter writer = new PrintWriter(REC_FILE)) {
         for (String receipt : receiptQueue.getReceipt()) {
             writer.println(receipt);
-            System.out.println("--------------------------------------------");
         }
         } catch (IOException e) {
             System.out.println("Error saving receipts: " + e.getMessage());
