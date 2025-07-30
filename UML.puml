@@ -1,0 +1,102 @@
+@startuml
+' =======================
+' Classes and Attributes
+' =======================
+
+class MainSystem {
+    - scanner : Scanner
+    - expenditureMap : HashMap<String, Expendituree>
+    - expenditureList : LinkedList<Expendituree>
+    - bankAccounts : HashMap<String, BankAccount>
+    - categoryManager : Category
+    - receiptQueue : Receipt
+    - reviewStack : Review
+    - minHeap : MinHeap
+    - MIN_BALANCE_THRESHOLD : double
+    - EXP_FILE : String
+    - BANK_FILE : String
+    - CAT_FILE : String
+    - REC_FILE : String
+    + addExpendituree()
+    + saveExpenditures()
+    + saveAccounts()
+    + saveCategories()
+    + saveReceipts()
+    + loadExpenditures()
+    + loadAccounts()
+    + loadCategories()
+    + loadReceipts()
+    + saveAll()
+    + notifyLowBalanceAccounts()
+    + loadAll()
+    + menu()
+    + main(args : String[])
+}
+
+class Expendituree {
+    + code : String
+    + amount : double
+    + date : String
+    + phase : String
+    + category : String
+    + bankAccountId : String
+    + Expendituree(...)
+    + display()
+}
+
+class BankAccount {
+    + accountId : String
+    + bankName : String
+    + balance : double
+    + expenditureCodes : LinkedList<Expendituree>
+    + BankAccount(...)
+    + addExpendituree(e : Expendituree)
+    + display()
+}
+
+class Category {
+    - categories : HashSet<String>
+    + getCategories() : List<String>
+    + addCategory(category : String) : boolean
+    + exists(category : String) : boolean
+    + displayAll()
+    + removeCategory(category : String) : boolean
+}
+
+class Receipt {
+    + receiptQueue : Queue<String>
+    + getReceipt() : List<String>
+    + uploadReceipt(receiptItem : String)
+}
+
+class Review {
+    + reviewStack : Stack<String>
+    + reviewReceipt(receiptQueue : String)
+}
+
+class MinHeap {
+    - heap : BankAccount[]
+    - size : int
+    + MinHeap(capacity : int)
+    + insert(acc : BankAccount)
+    + getmin() : BankAccount
+}
+
+' =======================
+' Relationships
+' =======================
+
+MainSystem "1" o-- "many" Expendituree
+MainSystem "1" o-- "many" BankAccount
+MainSystem "1" o-- Category
+MainSystem "1" o-- Receipt
+MainSystem "1" o-- Review
+MainSystem "1" o-- MinHeap
+
+BankAccount "1" o-- "many" Expendituree
+
+Receipt "1" o-- "many" String : receiptQueue
+Review "1" o-- "many" String : reviewStack
+Category "1" o-- "many" String : categories
+
+@enduml
