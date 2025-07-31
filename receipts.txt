@@ -10,3 +10,9 @@ Date: 2025-5-8
 Phase: CONSTRUCTION
 Category: Blocks
 Bank Account ID: AZA1001
+Receipt for expenditure CEM200: 
+Amount: 500.00
+Date: 2025-5-6
+Phase: construction
+Category: Cement
+Bank Account ID: AZA1001
