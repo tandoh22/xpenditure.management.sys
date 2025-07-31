@@ -4,7 +4,7 @@ public class Category {
     public MyArrayList<String> getCategories() {
     MyArrayList<String> list = new MyArrayList<>();
     for (int i = 0; i < categories.size(); i++) {
-        list.add(categories.get(i)); // assumes MyHashSet has get(index)
+        list.add(categories.get(i)); 
     }
     return list;
 }
