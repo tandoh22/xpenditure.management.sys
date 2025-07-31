@@ -1,4 +1,4 @@
-public class Queue<T> {
+public class MyQueue<T> {
     private static class Node<T> {
         T data;
         Node<T> next;

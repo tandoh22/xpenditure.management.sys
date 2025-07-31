@@ -1,4 +1,4 @@
-public class HashSet<T> {
+public class MyHashSet<T> {
     private static class Node<T> {
         T data;
         Node<T> next;
@@ -9,7 +9,7 @@ public class HashSet<T> {
     private int capacity;
     private int size;
 
-    public HashSet() {
+    public MyHashSet() {
         capacity = 16;
         buckets = (Node<T>[]) new Node[capacity];
         size = 0;

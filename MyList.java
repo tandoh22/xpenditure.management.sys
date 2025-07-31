@@ -1,8 +1,8 @@
-public class List<T> {
+public class MyList<T> {
     private Object[] data;
     private int size;
 
-    public List() {
+    public MyList() {
         data = new Object[10]; // initial capacity
         size = 0;
     }
