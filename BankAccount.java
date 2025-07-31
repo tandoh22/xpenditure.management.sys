@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 public class BankAccount {
     public String accountId;
     public String bankName;
