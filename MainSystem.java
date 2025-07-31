@@ -62,8 +62,8 @@ public class MainSystem {
     public static void saveExpenditures() {
         try (PrintWriter writer = new PrintWriter(EXP_FILE)) {
             for (Expendituree expenditure : expenditureList) {
-                writer.println(expenditure.code + "," + expenditure.amount + "," + expenditure.date + "," +
-                        expenditure.phase + "," + expenditure.category + "," + expenditure.bankAccountId);
+                writer.println(expenditure.code + ", " + expenditure.amount + ", " + expenditure.date + ", " +
+                        expenditure.phase + ", " + expenditure.category + ", " + expenditure.bankAccountId);
             }
         } catch (IOException e) {
             System.out.println("Error saving expenditures: " + e.getMessage());
