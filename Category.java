@@ -1,13 +1,14 @@
-import java.util.HashSet;
-import java.util.List;
-
-
 public class Category {
-    private HashSet<String> categories = new HashSet<>();
+    private MyHashSet<String> categories = new MyHashSet<>();
 
-    public List<String> getCategories() {
-        return new java.util.ArrayList<>(categories);
+    public MyArrayList<String> getCategories() {
+    MyArrayList<String> list = new MyArrayList<>();
+    for (int i = 0; i < categories.size(); i++) {
+        list.add(categories.get(i)); // assumes MyHashSet has get(index)
     }
+    return list;
+}
+
 
     public boolean addCategory(String category) {
         return categories.add(category);
@@ -18,9 +19,11 @@ public class Category {
     }
 
     public void displayAll() {
-        for (String cat : categories) {
-            System.out.println(cat);
+       for (int i = 0; i < categories.size(); i++) {
+           String cat = categories.get(i); 
+           System.out.println(cat);
         }
+
     }
     
     public boolean removeCategory(String category) {

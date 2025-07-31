@@ -72,4 +72,20 @@ public class MyHashSet<T> {
             }
         }
     }
+    
+    public T get(int index) {
+    int count = 0;
+    for (int i = 0; i < buckets.length; i++) {
+        Node<T> current = buckets[i];
+        while (current != null) {
+            if (count == index) {
+                return current.data;
+            }
+            current = current.next;
+            count++;
+        }
+    }
+    throw new IndexOutOfBoundsException("Index out of bounds: " + index);
+}
+
 }

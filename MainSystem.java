@@ -56,7 +56,7 @@ public class MainSystem {
                 + "Phase: " + phase + "\n"
                 + "Category: " + category + "\n"
                 + "Bank Account ID: " + bankAccountId;
-        receiptQueue.receiptQueue.add(receipt);
+        receiptQueue.receiptQueue.enqueue(receipt);
     }
 
     public static void saveExpenditures() {
@@ -90,15 +90,17 @@ public class MainSystem {
         }
     }
 
-    public static void saveReceipts() {
-        try (PrintWriter writer = new PrintWriter(REC_FILE)) {
-        for (String receipt : receiptQueue.getReceipt()) {
-            writer.println(receipt);
+   public static void saveReceipts() {
+    try (PrintWriter writer = new PrintWriter(REC_FILE)) {
+        MyList<String> receipts = receiptQueue.getReceipt();
+        for (int i = 0; i < receipts.size(); i++) {
+            writer.println(receipts.get(i));
         }
-        } catch (IOException e) {
-            System.out.println("Error saving receipts: " + e.getMessage());
-        }
+    } catch (IOException e) {
+        System.out.println("Error saving receipts: " + e.getMessage());
     }
+}
+
 
     public static void loadExpenditures() {
         try (BufferedReader reader = new BufferedReader(new FileReader(EXP_FILE))) {
@@ -151,7 +153,7 @@ public class MainSystem {
         try (BufferedReader reader = new BufferedReader(new FileReader(REC_FILE))) {
             String line;
             while((line = reader.readLine()) != null) {
-                receiptQueue.receiptQueue.add(line);
+                receiptQueue.receiptQueue.enqueue(line);
             }
         } catch (IOException e) {
             System.out.println("No receipts to load or file not found");

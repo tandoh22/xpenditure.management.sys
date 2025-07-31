@@ -1,14 +1,24 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class Receipt {
-    public Queue<String> receiptQueue = new LinkedList<>();
-    public List<String> getReceipt() {
-    return new ArrayList<>(receiptQueue);
+    public MyQueue<String> receiptQueue = new MyLinkedQueue<>();
+
+    public MyArrayList<String> getReceipt() {
+        MyArrayList<String> result = new MyArrayList<>();
+        int size = receiptQueue.size();
+
+        if (size == 0) {
+            System.out.println("No receipts available.");
+            return result;
+        }
+        for (int i = 0; i < size; i++) {
+            String item = receiptQueue.dequeue();
+            result.add(item);
+            receiptQueue.enqueue(item); 
+        }
+
+        return result;
     }
+
     public void uploadReceipt(String receiptItem) {
-        receiptQueue.add(receiptItem);
+        receiptQueue.enqueue(receiptItem);
     }
 }
