@@ -1,8 +1,8 @@
-public class ArrayList<T> {
+public class MyArrayList<T> {
     private Object[] data;
     private int size;
 
-    public ArrayList() {
+    public MyArrayList() {
         data = new Object[10]; // initial capacity
         size = 0;
     }

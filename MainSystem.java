@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.LinkedList;
 
 public class MainSystem {
     static Scanner scanner = new Scanner(System.in);

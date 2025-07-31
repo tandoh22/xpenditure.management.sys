@@ -4,3 +4,9 @@ Date: 2025-5-9
 Phase: SALES
 Category: Cement
 Bank Account ID: GCB2001
+Receipt for expenditure AMAS1002: 
+Amount: 200.00
+Date: 2025-5-8
+Phase: CONSTRUCTION
+Category: Blocks
+Bank Account ID: AZA1001

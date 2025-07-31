@@ -1,4 +1,4 @@
-public class LinkedList<T> {
+public class MyLinkedList<T> {
     private static class Node<T> {
         T data;
         Node<T> next;

@@ -2,13 +2,13 @@ public class BankAccount {
     public String accountId;
     public String bankName;
     public double balance;
-    public LinkedList<Expendituree> expenditureCodes;
+    public MyLinkedList<Expendituree> expenditureCodes;
 
     public BankAccount(String accountId, String bankName, double balance) {
         this.accountId = accountId;
         this.bankName = bankName;
         this.balance = balance;
-        this.expenditureCodes = new LinkedList<>();
+        this.expenditureCodes = new MyLinkedList<>();
     }
 
     public void addExpendituree(Expendituree expenditure) {
