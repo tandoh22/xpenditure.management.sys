@@ -14,14 +14,12 @@ public class ArrayList<T> {
         data[size++] = element;
     }
 
-    @SuppressWarnings("unchecked")
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
         return (T) data[index];
     }
-    @SuppressWarnings("unchecked")
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
